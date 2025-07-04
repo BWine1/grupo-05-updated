@@ -1,0 +1,25 @@
+# MSVisitor/src/main/resources/application.yml
+server:
+  port: 8080  # Porta do Gateway
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        # Rota para o MSResident
+        - id: ms-resident
+          uri: http://localhost:8081
+          predicates:
+            - Path=/resident/**
+
+        # Rota para o MSAccessControl
+        - id: ms-access
+          uri: http://localhost:8082
+          predicates:
+            - Path=/access/**
+
+        # Rota para o MSReservation (se for usar)
+        - id: ms-reservation
+          uri: http://localhost:8083
+          predicates:
+            - Path=/reservation/**
