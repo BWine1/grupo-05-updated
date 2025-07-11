@@ -1,0 +1,13 @@
+version: '3.8'
+services:
+  db-resident:
+    image: mysql:8.0
+    container_name: msresident-db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: msresident
+    ports:
+      - "3306:3306"
+    command: --default-authentication-plugin=mysql_native_password
+    volumes:
+      - ./sql/init.sql:/docker-entrypoint-initdb.d/init.sql 
